@@ -7,13 +7,28 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+mapviewのpopupにtableを表示できる！
+[mapview](https://r-spatial.github.io/mapview/articles/articles/mapview_04-popups.html#graph-popups-1)
 
-```{r map}
+```{r leaflet_popup}
+
 library(mapview)
 library(leaflet)
 library(leafpop)
 library(lattice)
 library(sp)
+
+leaflet() %>%
+  addTiles() %>%
+  addCircleMarkers(data = breweries,
+                   popup = popupTable(breweries))
+
+
+```
+
+
+
+```{r map}
 
 data(meuse)
 coordinates(meuse) <- ~x+y
